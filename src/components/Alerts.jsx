@@ -49,7 +49,7 @@ export const Alerts = () => {
         {alerts.map((alert) => (
           alert.visible && (
             <div key={alert.id} className={`flex items-start gap-4 p-4 rounded-xl border ${getAlertStyles(alert.type)}`}>
-              <div className="flex-shrink-0 mt-0.5">
+              <div className="shrink-0 mt-0.5">
                 {getAlertIcon(alert.type)}
               </div>
               <div className="flex-1">
@@ -58,7 +58,7 @@ export const Alerts = () => {
               </div>
               <button
                 onClick={() => removeAlert(alert.id)}
-                className="flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                className="shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
               >
                 <X className="w-5 h-5" />
               </button>

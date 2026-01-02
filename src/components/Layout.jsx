@@ -30,7 +30,7 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
           {/* Logo */}
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 SaaS Co.
               </h1>
               <button
@@ -50,7 +50,7 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
                   key={idx}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     item.active
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
+                      ? 'bg-linear-to-r from-blue-500 to-blue-600 text-white shadow-lg'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
@@ -69,7 +69,7 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
               <span className="font-medium text-sm">Settings</span>
             </button>
             <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                 {user?.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 text-left">
@@ -160,7 +160,7 @@ export const Header = ({ isOpen, setIsOpen, user, toggleTheme, theme }) => {
               onClick={() => setIsProfileOpen(!isProfileOpen)}
               className="flex items-center gap-3 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
                 {user?.charAt(0).toUpperCase()}
               </div>
               <span className="font-medium hidden sm:block">{user}</span>

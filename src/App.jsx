@@ -20,7 +20,7 @@ function App() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white text-lg font-medium">Loading...</p>
@@ -31,13 +31,13 @@ function App() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center px-4 py-8">
+      <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md">
           {/* Login Card */}
           <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700">
             {/* Header */}
             <div className="text-center mb-10">
-              <div className="inline-block p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
+              <div className="inline-block p-4 bg-linear-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -50,7 +50,7 @@ function App() {
             <div className="space-y-3 mb-8">
               <button
                 onClick={() => login('admin')}
-                className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
+                className="w-full py-3 px-6 bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -62,7 +62,7 @@ function App() {
 
               <button
                 onClick={() => login('manager')}
-                className="w-full py-3 px-6 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
+                className="w-full py-3 px-6 bg-linear-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -74,7 +74,7 @@ function App() {
 
               <button
                 onClick={() => login('user')}
-                className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
+                className="w-full py-3 px-6 bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold rounded-xl transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
               >
                 <span className="flex items-center justify-center gap-2">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

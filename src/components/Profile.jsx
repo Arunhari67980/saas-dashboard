@@ -8,7 +8,7 @@ export const Profile = ({ user }) => {
       {/* Profile Header */}
       <div className="card">
         <div className="flex flex-col md:flex-row items-center gap-6">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold">
+          <div className="w-24 h-24 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold">
             {user?.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 text-center md:text-left">
@@ -41,7 +41,7 @@ export const Profile = ({ user }) => {
           <div className="md:col-span-2 space-y-2">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
             <div className="flex items-start gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
-              <MapPin className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" />
+              <MapPin className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
               <input type="text" placeholder="123 Business Street, City, State 12345" className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
             </div>
           </div>

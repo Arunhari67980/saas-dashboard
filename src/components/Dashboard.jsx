@@ -39,7 +39,7 @@ export const Dashboard = ({ user }) => {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl p-8 text-white shadow-xl">
+      <div className="bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl p-8 text-white shadow-xl">
         <h1 className="text-4xl font-bold mb-2">Welcome back, {user}</h1>
         <p className="text-gray-300">Here's what's happening with your business today</p>
       </div>
@@ -50,7 +50,7 @@ export const Dashboard = ({ user }) => {
           <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center justify-between mb-4">
               <div className={`${metric.bgColor} p-4 rounded-xl`}>
-                <div className={`bg-gradient-to-br ${metric.color} p-2 rounded-lg text-white`}>
+                <div className={`bg-linear-to-br ${metric.color} p-2 rounded-lg text-white`}>
                   {metric.icon}
                 </div>
               </div>
@@ -70,7 +70,7 @@ export const Dashboard = ({ user }) => {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">Revenue Overview</h3>
             <BarChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </div>
-          <div className="h-80 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
+          <div className="h-80 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
             <div className="text-center">
               <LineChart className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
               <p className="text-gray-500 dark:text-gray-400">Chart visualization area</p>
@@ -85,7 +85,7 @@ export const Dashboard = ({ user }) => {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">Distribution</h3>
             <PieChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </div>
-          <div className="h-80 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
+          <div className="h-80 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
             <div className="text-center">
               <PieChart className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
               <p className="text-gray-500 dark:text-gray-400">Market distribution</p>
