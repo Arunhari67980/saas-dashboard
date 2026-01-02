@@ -1,7 +1,10 @@
-import { BarChart, LineChart, PieChart, TrendingUp, Users, Activity, Zap } from 'lucide-react';
+import { BarChart, LineChart, PieChart, TrendingUp, Users, Activity, Zap, RefreshCw } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useToast } from '../hooks/useToast';
+import { ToastContainer } from './Toast';
 
 export const Dashboard = ({ user }) => {
-  const metrics = [
+  const [metrics, setMetrics] = useState([
     {
       title: 'Total Revenue',
       value: '$124,500',
@@ -34,14 +37,83 @@ export const Dashboard = ({ user }) => {
       color: 'from-orange-500 to-orange-600',
       bgColor: 'bg-orange-50 dark:bg-orange-900/20'
     }
-  ];
+  ]);
+
+  const [revenueData, setRevenueData] = useState([
+    { month: 'Jan', value: 45000 },
+    { month: 'Feb', value: 52000 },
+    { month: 'Mar', value: 48000 },
+    { month: 'Apr', value: 61000 },
+    { month: 'May', value: 55000 },
+    { month: 'Jun', value: 67000 },
+    { month: 'Jul', value: 72000 },
+    { month: 'Aug', value: 68000 },
+    { month: 'Sep', value: 75000 },
+    { month: 'Oct', value: 82000 },
+    { month: 'Nov', value: 78000 },
+    { month: 'Dec', value: 124500 }
+  ]);
+
+  const [distributionData, setDistributionData] = useState([
+    { label: 'Web', value: 45, color: 'bg-blue-500' },
+    { label: 'Mobile', value: 30, color: 'bg-green-500' },
+    { label: 'API', value: 15, color: 'bg-purple-500' },
+    { label: 'Other', value: 10, color: 'bg-orange-500' }
+  ]);
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const { toasts, success, removeToast } = useToast();
+
+  const maxRevenue = Math.max(...revenueData.map(d => d.value));
+
+  const refreshData = () => {
+    setIsRefreshing(true);
+    setTimeout(() => {
+      setMetrics(prev => prev.map(metric => ({
+        ...metric,
+        value: metric.title === 'Total Revenue' 
+          ? `$${Math.floor(Math.random() * 50000 + 100000).toLocaleString()}`
+          : metric.title === 'Active Users'
+          ? `${Math.floor(Math.random() * 2000 + 7000).toLocaleString()}`
+          : metric.value
+      })));
+      success('Data refreshed successfully!');
+      setIsRefreshing(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMetrics(prev => prev.map(metric => ({
+        ...metric,
+        value: metric.title === 'Performance'
+          ? `${Math.floor(Math.random() * 30 + 80)} ms`
+          : metric.value
+      })));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="space-y-8">
+      <ToastContainer toasts={toasts} removeToast={removeToast} />
+      
       {/* Header Section */}
-      <div className="bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl p-8 text-white shadow-xl">
-        <h1 className="text-4xl font-bold mb-2">Welcome back, {user}</h1>
-        <p className="text-gray-300">Here's what's happening with your business today</p>
+      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl p-8 text-white shadow-xl">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Welcome back, {user}</h1>
+            <p className="text-gray-300">Here's what's happening with your business today</p>
+          </div>
+          <button
+            onClick={refreshData}
+            disabled={isRefreshing}
+            className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-colors disabled:opacity-50"
+            title="Refresh Data"
+          >
+            <RefreshCw className={`w-6 h-6 ${isRefreshing ? 'animate-spin' : ''}`} />
+          </button>
+        </div>
       </div>
 
       {/* Metrics Grid */}
@@ -49,8 +121,8 @@ export const Dashboard = ({ user }) => {
         {metrics.map((metric, idx) => (
           <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center justify-between mb-4">
-              <div className={`${metric.bgColor} p-4 rounded-xl`}>
-                <div className={`bg-linear-to-br ${metric.color} p-2 rounded-lg text-white`}>
+                <div className={`${metric.bgColor} p-4 rounded-xl`}>
+                <div className={`bg-gradient-to-br ${metric.color} p-2 rounded-lg text-white`}>
                   {metric.icon}
                 </div>
               </div>
@@ -70,11 +142,33 @@ export const Dashboard = ({ user }) => {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">Revenue Overview</h3>
             <BarChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </div>
-          <div className="h-80 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <LineChart className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-500 dark:text-gray-400">Chart visualization area</p>
-              <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">Revenue trend over the past 12 months</p>
+          <div className="h-80 p-4">
+            <div className="h-full flex items-end justify-between gap-2">
+              {revenueData.map((item, idx) => {
+                const barHeight = (item.value / maxRevenue) * 100;
+                const minHeight = 5; // Minimum height for visibility
+                const actualHeight = Math.max(barHeight, minHeight);
+                
+                return (
+                  <div key={idx} className="flex-1 flex flex-col items-center group cursor-pointer h-full">
+                    <div className="w-full flex flex-col items-end justify-end h-full relative">
+                      <div
+                        className="w-full bg-gradient-to-t from-blue-500 to-blue-600 rounded-t-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 relative group-hover:opacity-90 group-hover:shadow-lg"
+                        style={{ 
+                          height: `${actualHeight}%`,
+                          minHeight: `${minHeight}%`
+                        }}
+                      >
+                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded shadow-lg whitespace-nowrap z-10 pointer-events-none">
+                          ${item.value.toLocaleString()}
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">{item.month}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -85,11 +179,21 @@ export const Dashboard = ({ user }) => {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">Distribution</h3>
             <PieChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
           </div>
-          <div className="h-80 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-800 rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <PieChart className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-500 dark:text-gray-400">Market distribution</p>
-            </div>
+          <div className="h-80 flex flex-col justify-center space-y-4">
+            {distributionData.map((item, idx) => (
+              <div key={idx} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{item.label}</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">{item.value}%</span>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                  <div
+                    className={`${item.color} h-full rounded-full transition-all duration-500 hover:opacity-80`}
+                    style={{ width: `${item.value}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,13 +1,15 @@
-import { Menu, X, Bell, Settings, LogOut, User, Home, BarChart3, Users, Zap, LifeBuoy } from 'lucide-react';
+import { Menu, X, Bell, Settings, LogOut, User, Home, BarChart3, Users, Zap, LifeBuoy, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
+  const location = useLocation();
+  
   const menuItems = [
-    { icon: <Home className="w-5 h-5" />, label: 'Dashboard', active: true },
-    { icon: <BarChart3 className="w-5 h-5" />, label: 'Analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'Users' },
-    { icon: <Zap className="w-5 h-5" />, label: 'Performance' },
-    { icon: <LifeBuoy className="w-5 h-5" />, label: 'Support' }
+    { icon: <Home className="w-5 h-5" />, label: 'Dashboard', path: '/dashboard' },
+    { icon: <Users className="w-5 h-5" />, label: 'Users', path: '/users' },
+    { icon: <User className="w-5 h-5" />, label: 'Profile', path: '/profile' },
+    { icon: <AlertCircle className="w-5 h-5" />, label: 'Alerts', path: '/alerts' }
   ];
 
   return (
@@ -30,7 +32,7 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
           {/* Logo */}
           <div className="p-6 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 SaaS Co.
               </h1>
               <button
@@ -45,31 +47,40 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout, theme }) => {
           {/* Menu Items */}
           <nav className="flex-1 overflow-y-auto p-4">
             <div className="space-y-2">
-              {menuItems.map((item, idx) => (
-                <button
-                  key={idx}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
-                    item.active
-                      ? 'bg-linear-to-r from-blue-500 to-blue-600 text-white shadow-lg'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {item.icon}
-                  <span className="font-medium">{item.label}</span>
-                  {item.active && <div className="ml-auto w-2 h-2 rounded-full bg-white"></div>}
-                </button>
-              ))}
+              {menuItems.map((item, idx) => {
+                const isActive = location.pathname === item.path || (item.path === '/dashboard' && location.pathname === '/');
+                return (
+                  <Link
+                    key={idx}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                      isActive
+                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {item.icon}
+                    <span className="font-medium">{item.label}</span>
+                    {isActive && <div className="ml-auto w-2 h-2 rounded-full bg-white"></div>}
+                  </Link>
+                );
+              })}
             </div>
           </nav>
 
           {/* User Section */}
           <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-3">
-            <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+            <Link
+              to="/profile"
+              onClick={() => setIsOpen(false)}
+              className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
+            >
               <Settings className="w-5 h-5" />
               <span className="font-medium text-sm">Settings</span>
-            </button>
+            </Link>
             <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-              <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                 {user?.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 text-left">
@@ -160,7 +171,7 @@ export const Header = ({ isOpen, setIsOpen, user, toggleTheme, theme }) => {
               onClick={() => setIsProfileOpen(!isProfileOpen)}
               className="flex items-center gap-3 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
-              <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
                 {user?.charAt(0).toUpperCase()}
               </div>
               <span className="font-medium hidden sm:block">{user}</span>
@@ -173,10 +184,14 @@ export const Header = ({ isOpen, setIsOpen, user, toggleTheme, theme }) => {
                   <p className="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
                 </div>
                 <div className="divide-y divide-gray-200 dark:divide-gray-600">
-                  <button className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600/50 transition-colors flex items-center gap-2">
+                  <Link
+                    to="/profile"
+                    className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600/50 transition-colors flex items-center gap-2"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
                     <User className="w-4 h-4" />
                     My Profile
-                  </button>
+                  </Link>
                 </div>
               </div>
             )}
