@@ -5,6 +5,7 @@ import { Sidebar, Header } from './components/Layout';
 import { Dashboard } from './components/Dashboard';
 import { Tables } from './components/Tables';
 import { Profile } from './components/Profile';
+import { Settings } from './components/Settings';
 import { Alerts } from './components/Alerts';
 
 function App() {
@@ -125,6 +126,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard user={user} />} />
                 <Route path="/users" element={<Tables />} />
                 <Route path="/profile" element={<Profile user={user} />} />
+                <Route path="/settings" element={<Settings user={user} />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="*" element={<Navigate to="/dashboard" replace />} />
               </Routes>

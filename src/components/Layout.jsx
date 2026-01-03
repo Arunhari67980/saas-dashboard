@@ -9,6 +9,7 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout }) => {
     { icon: <Home className="w-5 h-5" />, label: 'Dashboard', path: '/dashboard' },
     { icon: <Users className="w-5 h-5" />, label: 'Users', path: '/users' },
     { icon: <User className="w-5 h-5" />, label: 'Profile', path: '/profile' },
+    { icon: <Settings className="w-5 h-5" />, label: 'Settings', path: '/settings' },
     { icon: <AlertCircle className="w-5 h-5" />, label: 'Alerts', path: '/alerts' }
   ];
 
@@ -71,14 +72,6 @@ export const Sidebar = ({ isOpen, setIsOpen, user, logout }) => {
 
           {/* User Section */}
           <div className="p-4 border-t border-gray-200 space-y-3">
-            <Link
-              to="/profile"
-              onClick={() => setIsOpen(false)}
-              className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-            >
-              <Settings className="w-5 h-5" />
-              <span className="font-medium text-sm">Settings</span>
-            </Link>
             <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                 {user?.charAt(0).toUpperCase()}
