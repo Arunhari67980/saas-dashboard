@@ -11,7 +11,7 @@ export const Dashboard = ({ user }) => {
       change: '+12.5%',
       icon: <TrendingUp className="w-8 h-8" />,
       color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20'
+      bgColor: 'bg-blue-50'
     },
     {
       title: 'Active Users',
@@ -19,7 +19,7 @@ export const Dashboard = ({ user }) => {
       change: '+8.2%',
       icon: <Users className="w-8 h-8" />,
       color: 'from-green-500 to-green-600',
-      bgColor: 'bg-green-50 dark:bg-green-900/20'
+      bgColor: 'bg-green-50'
     },
     {
       title: 'System Health',
@@ -27,7 +27,7 @@ export const Dashboard = ({ user }) => {
       change: '+0.1%',
       icon: <Activity className="w-8 h-8" />,
       color: 'from-purple-500 to-purple-600',
-      bgColor: 'bg-purple-50 dark:bg-purple-900/20'
+      bgColor: 'bg-purple-50'
     },
     {
       title: 'Performance',
@@ -35,7 +35,7 @@ export const Dashboard = ({ user }) => {
       change: '-5.3%',
       icon: <Zap className="w-8 h-8" />,
       color: 'from-orange-500 to-orange-600',
-      bgColor: 'bg-orange-50 dark:bg-orange-900/20'
+      bgColor: 'bg-orange-50'
     }
   ]);
 
@@ -99,7 +99,7 @@ export const Dashboard = ({ user }) => {
       <ToastContainer toasts={toasts} removeToast={removeToast} />
       
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 rounded-2xl p-8 text-white shadow-xl">
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 rounded-2xl p-8 text-white shadow-xl">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold mb-2">Welcome back, {user}</h1>
@@ -119,7 +119,7 @@ export const Dashboard = ({ user }) => {
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, idx) => (
-          <div key={idx} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div key={idx} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center justify-between mb-4">
                 <div className={`${metric.bgColor} p-4 rounded-xl`}>
                 <div className={`bg-gradient-to-br ${metric.color} p-2 rounded-lg text-white`}>
@@ -128,8 +128,8 @@ export const Dashboard = ({ user }) => {
               </div>
               <span className="text-green-500 text-sm font-semibold">{metric.change}</span>
             </div>
-            <h3 className="text-gray-600 dark:text-gray-400 text-sm font-medium">{metric.title}</h3>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-2">{metric.value}</p>
+            <h3 className="text-gray-600 text-sm font-medium">{metric.title}</h3>
+            <p className="text-2xl font-bold text-gray-900 mt-2">{metric.value}</p>
           </div>
         ))}
       </div>
@@ -137,10 +137,10 @@ export const Dashboard = ({ user }) => {
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Revenue Chart */}
-        <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+        <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Revenue Overview</h3>
-            <BarChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+            <h3 className="text-xl font-bold text-gray-900">Revenue Overview</h3>
+            <BarChart className="w-6 h-6 text-gray-500" />
           </div>
           <div className="h-80 p-4">
             <div className="h-full flex items-end justify-between gap-2">
@@ -159,13 +159,13 @@ export const Dashboard = ({ user }) => {
                           minHeight: `${minHeight}%`
                         }}
                       >
-                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded shadow-lg whitespace-nowrap z-10 pointer-events-none">
+                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs px-3 py-1.5 rounded shadow-lg whitespace-nowrap z-10 pointer-events-none">
                           ${item.value.toLocaleString()}
-                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">{item.month}</span>
+                    <span className="text-xs text-gray-600 mt-2 font-medium">{item.month}</span>
                   </div>
                 );
               })}
@@ -174,19 +174,19 @@ export const Dashboard = ({ user }) => {
         </div>
 
         {/* Distribution Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+        <div className="bg-white rounded-2xl p-6 shadow-lg">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Distribution</h3>
-            <PieChart className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+            <h3 className="text-xl font-bold text-gray-900">Distribution</h3>
+            <PieChart className="w-6 h-6 text-gray-500" />
           </div>
           <div className="h-80 flex flex-col justify-center space-y-4">
             {distributionData.map((item, idx) => (
               <div key={idx} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{item.label}</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">{item.value}%</span>
+                  <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                  <span className="text-sm font-bold text-gray-900">{item.value}%</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                   <div
                     className={`${item.color} h-full rounded-full transition-all duration-500 hover:opacity-80`}
                     style={{ width: `${item.value}%` }}
@@ -199,8 +199,8 @@ export const Dashboard = ({ user }) => {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Recent Activity</h3>
+      <div className="bg-white rounded-2xl p-6 shadow-lg">
+        <h3 className="text-xl font-bold text-gray-900 mb-6">Recent Activity</h3>
         <div className="space-y-4">
           {[
             { title: 'New user registration', time: '2 hours ago', type: 'success' },
@@ -208,15 +208,15 @@ export const Dashboard = ({ user }) => {
             { title: 'Revenue milestone reached', time: '1 day ago', type: 'success' },
             { title: 'New API integration deployed', time: '2 days ago', type: 'info' }
           ].map((activity, idx) => (
-            <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
               <div className="flex items-center gap-4">
                 <div className={`w-2 h-2 rounded-full ${activity.type === 'success' ? 'bg-green-500' : 'bg-blue-500'}`}></div>
                 <div>
-                  <p className="font-medium text-gray-900 dark:text-white">{activity.title}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{activity.time}</p>
+                  <p className="font-medium text-gray-900">{activity.title}</p>
+                  <p className="text-sm text-gray-500">{activity.time}</p>
                 </div>
               </div>
-              <div className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
             </div>
           ))}
         </div>

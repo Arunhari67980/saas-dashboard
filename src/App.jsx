@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth';
-import { useTheme } from './context/ThemeContext';
 import { Sidebar, Header } from './components/Layout';
 import { Dashboard } from './components/Dashboard';
 import { Tables } from './components/Tables';
@@ -10,7 +9,6 @@ import { Alerts } from './components/Alerts';
 
 function App() {
   const { user, login, logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -24,10 +22,10 @@ function App() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white text-lg font-medium">Loading...</p>
+          <p className="text-gray-900 text-lg font-medium">Loading...</p>
         </div>
       </div>
     );
@@ -35,10 +33,10 @@ function App() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center px-4 py-8">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md">
           {/* Login Card */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700">
+          <div className="bg-white p-8 rounded-3xl shadow-2xl border border-gray-200">
             {/* Header */}
             <div className="text-center mb-10">
               <div className="inline-block p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4">
@@ -46,8 +44,8 @@ function App() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">SaaS Dashboard</h1>
-              <p className="text-gray-600 dark:text-gray-400">Advanced Analytics & Management Platform</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">SaaS Dashboard</h1>
+              <p className="text-gray-600">Advanced Analytics & Management Platform</p>
             </div>
 
             {/* Login Buttons */}
@@ -89,40 +87,8 @@ function App() {
               </button>
             </div>
 
-            {/* Divider */}
-            <div className="relative mb-8">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">Or</span>
-              </div>
-            </div>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="w-full py-3 px-6 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold rounded-xl transition duration-300 flex items-center justify-center gap-3"
-            >
-              {theme === 'dark' ? (
-                <>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm5.657-9.193a1 1 0 00-1.414 0l-.707.707A1 1 0 005.05 6.464l.707-.707a1 1 0 011.414 0zM5 17a1 1 0 100-2H4a1 1 0 100 2h1z" clipRule="evenodd"></path>
-                  </svg>
-                  Light Mode
-                </>
-              ) : (
-                <>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                  </svg>
-                  Dark Mode
-                </>
-              )}
-            </button>
-
             {/* Footer */}
-            <p className="text-center text-gray-500 dark:text-gray-400 text-xs mt-6">
+            <p className="text-center text-gray-500 text-xs mt-6">
               © 2026 SaaS Co. All rights reserved.
             </p>
           </div>
@@ -133,14 +99,13 @@ function App() {
 
   return (
     <Router>
-      <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex h-screen bg-gray-50">
         {/* Sidebar */}
         <Sidebar
           isOpen={sidebarOpen}
           setIsOpen={setSidebarOpen}
           user={user}
           logout={logout}
-          theme={theme}
         />
 
         {/* Main Content */}
@@ -150,12 +115,10 @@ function App() {
             isOpen={sidebarOpen}
             setIsOpen={setSidebarOpen}
             user={user}
-            toggleTheme={toggleTheme}
-            theme={theme}
           />
 
           {/* Routes */}
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1 overflow-auto bg-gray-50">
             <div className="p-6 lg:p-8">
               <Routes>
                 <Route path="/" element={<Dashboard user={user} />} />

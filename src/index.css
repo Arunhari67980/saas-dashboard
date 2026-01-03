@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Base styles for body and html */
+html,
+body {
+  background-color: rgb(249 250 251); /* bg-gray-50 */
+  margin: 0;
+  padding: 0;
+}
+
 @layer utilities {
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-in-out;
@@ -49,14 +57,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(107 114 128 / 0.7);
-}
-
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-thumb {
-  background: rgb(75 85 99 / 0.5);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
   background: rgb(107 114 128 / 0.7);
 }

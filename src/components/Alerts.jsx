@@ -16,13 +16,13 @@ export const Alerts = () => {
   const getAlertStyles = (type) => {
     switch (type) {
       case 'success':
-        return 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-300';
+        return 'bg-green-50 border-green-200 text-green-800';
       case 'error':
-        return 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-300';
+        return 'bg-red-50 border-red-200 text-red-800';
       case 'warning':
-        return 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-300';
+        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
       case 'info':
-        return 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300';
+        return 'bg-blue-50 border-blue-200 text-blue-800';
       default:
         return '';
     }
@@ -44,7 +44,7 @@ export const Alerts = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Alerts & Notifications</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Alerts & Notifications</h2>
       <div className="space-y-4">
         {alerts.map((alert) => (
           alert.visible && (
@@ -58,7 +58,7 @@ export const Alerts = () => {
               </div>
               <button
                 onClick={() => removeAlert(alert.id)}
-                className="shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                className="shrink-0 text-gray-400 hover:text-gray-600"
               >
                 <X className="w-5 h-5" />
               </button>

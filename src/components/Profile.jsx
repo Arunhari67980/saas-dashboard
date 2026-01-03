@@ -124,7 +124,7 @@ export const Profile = ({ user }) => {
       <ToastContainer toasts={toasts} removeToast={removeToast} />
       
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Profile Settings</h2>
+        <h2 className="text-3xl font-bold text-gray-900">Profile Settings</h2>
         {!isEditing && (
           <button
             onClick={() => setIsEditing(true)}
@@ -137,7 +137,7 @@ export const Profile = ({ user }) => {
       </div>
 
       {/* Profile Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+      <div className="bg-white rounded-2xl p-6 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-6">
           <div className="relative">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold">
@@ -150,28 +150,28 @@ export const Profile = ({ user }) => {
             )}
           </div>
           <div className="flex-1 text-center md:text-left">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white capitalize">{user}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 capitalize">{user}</h3>
             <input
               type="text"
               value={formData.bio}
               onChange={(e) => handleChange('bio', e.target.value)}
               disabled={!isEditing}
-              className={`mt-1 bg-transparent outline-none text-gray-600 dark:text-gray-400 ${isEditing ? 'border-b border-gray-300 dark:border-gray-600' : 'border-none'} focus:border-blue-500`}
+              className={`mt-1 bg-transparent outline-none text-gray-600 ${isEditing ? 'border-b border-gray-300' : 'border-none'} focus:border-blue-500`}
               placeholder="Your bio"
             />
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">Member since January 2024</p>
+            <p className="text-sm text-gray-500 mt-2">Member since January 2024</p>
           </div>
         </div>
       </div>
 
       {/* Contact Information */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+      <div className="bg-white rounded-2xl p-6 shadow-lg">
+        <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email *</label>
-            <div className={`flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border ${
-              errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+            <label className="block text-sm font-medium text-gray-700">Email *</label>
+            <div className={`flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg border ${
+              errors.email ? 'border-red-500' : 'border-gray-200'
             }`}>
               <Mail className="w-5 h-5 text-gray-400" />
               <input
@@ -179,16 +179,16 @@ export const Profile = ({ user }) => {
                 value={formData.email}
                 onChange={(e) => handleChange('email', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder={`${user}@example.com`}
               />
             </div>
             {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
-            <div className={`flex items-center gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border ${
-              errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+            <label className="block text-sm font-medium text-gray-700">Phone</label>
+            <div className={`flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg border ${
+              errors.phone ? 'border-red-500' : 'border-gray-200'
             }`}>
               <Phone className="w-5 h-5 text-gray-400" />
               <input
@@ -196,22 +196,22 @@ export const Profile = ({ user }) => {
                 value={formData.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder="+1 (555) 123-4567"
               />
             </div>
             {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
           </div>
           <div className="md:col-span-2 space-y-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
-            <div className="flex items-start gap-3 px-4 py-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
+            <label className="block text-sm font-medium text-gray-700">Address</label>
+            <div className="flex items-start gap-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
               <MapPin className="w-5 h-5 text-gray-400 mt-1 shrink-0" />
               <input
                 type="text"
                 value={formData.address}
                 onChange={(e) => handleChange('address', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder="123 Business Street, City, State 12345"
               />
             </div>
@@ -220,12 +220,12 @@ export const Profile = ({ user }) => {
       </div>
 
       {/* Social Links */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Social Links</h3>
+      <div className="bg-white rounded-2xl p-6 shadow-lg">
+        <h3 className="text-xl font-bold text-gray-900 mb-6">Social Links</h3>
         <div className="space-y-4">
           <div className="space-y-2">
-            <div className={`flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border ${
-              errors.github ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+            <div className={`flex items-center gap-3 p-4 bg-gray-50 rounded-lg border ${
+              errors.github ? 'border-red-500' : 'border-gray-200'
             }`}>
               <Github className="w-5 h-5 text-gray-400" />
               <input
@@ -233,15 +233,15 @@ export const Profile = ({ user }) => {
                 value={formData.github}
                 onChange={(e) => handleChange('github', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder="https://github.com/username"
               />
             </div>
             {errors.github && <p className="text-sm text-red-500 ml-12">{errors.github}</p>}
           </div>
           <div className="space-y-2">
-            <div className={`flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border ${
-              errors.linkedin ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+            <div className={`flex items-center gap-3 p-4 bg-gray-50 rounded-lg border ${
+              errors.linkedin ? 'border-red-500' : 'border-gray-200'
             }`}>
               <Linkedin className="w-5 h-5 text-gray-400" />
               <input
@@ -249,15 +249,15 @@ export const Profile = ({ user }) => {
                 value={formData.linkedin}
                 onChange={(e) => handleChange('linkedin', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder="https://linkedin.com/in/username"
               />
             </div>
             {errors.linkedin && <p className="text-sm text-red-500 ml-12">{errors.linkedin}</p>}
           </div>
           <div className="space-y-2">
-            <div className={`flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border ${
-              errors.twitter ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+            <div className={`flex items-center gap-3 p-4 bg-gray-50 rounded-lg border ${
+              errors.twitter ? 'border-red-500' : 'border-gray-200'
             }`}>
               <Twitter className="w-5 h-5 text-gray-400" />
               <input
@@ -265,7 +265,7 @@ export const Profile = ({ user }) => {
                 value={formData.twitter}
                 onChange={(e) => handleChange('twitter', e.target.value)}
                 disabled={!isEditing}
-                className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 disabled:opacity-50"
+                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 disabled:opacity-50"
                 placeholder="https://twitter.com/username"
               />
             </div>
@@ -287,7 +287,7 @@ export const Profile = ({ user }) => {
           </button>
           <button
             onClick={handleCancel}
-            className="flex items-center gap-2 px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-colors font-medium"
+            className="flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition-colors font-medium"
           >
             <X className="w-5 h-5" />
             Cancel
